@@ -8,9 +8,11 @@ const FileUpload = () => {
   const [file1, setFile1] = useState('');
   const [loading, setLoading] = useState(false);
   const [isRemove, setIsRemove] = useState(true);
-  const apiKey = 'AsijaPngiPpr7MS1LvAPVzAP';
+//   const apiKey = import.meta.env.VITE_API_SECRET_KEY;
+//   const apikey =import.meta.env.VITE_API_SECRET_KEY
 
   const handleFileChange = (e) => {
+    // console.log(apikey,"apikey")
     const file = e.target.files[0];
     if (file) {
       setFile1(file);
@@ -64,10 +66,10 @@ const FileUpload = () => {
         ) : (
           <div className="border border-gray-300 rounded-lg bg-white w-64 h-64 items-center justify-center pt-[5rem] ">
             {/* Placeholder */}
-            <div className='flex-row pl-[6rem]'>
+            <div className='flex-row pl-[7rem]'>
             <FaImage className="text-gray-500 mt-2" size={44} />
             </div>
-            <div className='flex-row pl-[4rem]'>
+            <div className='flex-row pl-[5rem]'>
             <span>Add your Image</span>
             </div>
           
