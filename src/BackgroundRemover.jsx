@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { FaImage } from 'react-icons/fa';
+import { FaSyncAlt } from 'react-icons/fa';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const FileUpload = () => {
   const [image, setImage] = useState(null);
@@ -8,7 +12,8 @@ const FileUpload = () => {
   const [file1, setFile1] = useState('');
   const [loading, setLoading] = useState(false);
   const [isRemove, setIsRemove] = useState(true);
-//   const apiKey = import.meta.env.VITE_API_SECRET_KEY;
+  const apiKey = "AsijaPngiPpr7MS1LvAPVzAP";
+  const [error, setError] = useState(false)
 //   const apikey =import.meta.env.VITE_API_SECRET_KEY
 
   const handleFileChange = (e) => {
@@ -42,6 +47,7 @@ const FileUpload = () => {
       const url = URL.createObjectURL(blob);
       setImage(url);
     } catch (error) {
+        toast.error('Unsupported image format');
       console.error('Error removing background:', error);
     }
 
@@ -56,6 +62,10 @@ const FileUpload = () => {
     a.click();
     document.body.removeChild(a);
   };
+  const reload=()=>{
+    setImage(null)
+    setIsImage(true)
+  }
 
   return (
     <div className="flex flex-col items-center justify-center space-y-4 p-[5rem]">
@@ -69,14 +79,15 @@ const FileUpload = () => {
             <div className='flex-row pl-[7rem]'>
             <FaImage className="text-gray-500 mt-2" size={44} />
             </div>
+         
             <div className='flex-row pl-[5rem]'>
             <span>Add your Image</span>
             </div>
-          
-            
           </div>
+        
         )}
       </div>
+
      {isImage? <label htmlFor="file-upload" className="relative cursor-pointer">
         <span className="py-2 px-4 bg-[#37247d] text-white rounded-lg shadow-md inline-block">
           Select an Image
@@ -93,19 +104,29 @@ const FileUpload = () => {
         <div>
             
           {isRemove ? (
+            <div className='flex'>
             <button
               onClick={handleRemoveBackground}
               className="bg-red-500 text-white px-4 py-2 rounded"
             >
               Remove Background
             </button>
+              <button onClick={reload} className="flex items-center ml-2 justify-center rounded-full bg-gray-200 hover:bg-gray-300 w-10 h-10">
+              <FaSyncAlt className="h-6 w-6 text-gray-600" />
+            </button>
+            </div>
           ) : (
+            <div className='flex'>
             <button
               onClick={handleDownload}
               className="bg-green-500 text-white px-4 py-2 rounded"
             >
               Download
             </button>
+            <button onClick={reload} className="flex items-center ml-2 justify-center rounded-full bg-gray-200 hover:bg-gray-300 w-10 h-10">
+              <FaSyncAlt className="h-6 w-6 text-gray-600" />
+            </button>
+            </div>
           )}
         </div>
       )}
