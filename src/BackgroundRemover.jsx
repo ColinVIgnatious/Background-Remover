@@ -11,7 +11,7 @@ const FileUpload = () => {
   const [file1, setFile1] = useState('');
   const [loading, setLoading] = useState(false);
   const [isRemove, setIsRemove] = useState(true);
-  const apiKey = "AsijaPngiPpr7MS1LvAPVzAP";
+  const apiKey = "XVtGjrXjmmtXSHUgCTGSdw3T";
   const [error, setError] = useState(false);
 
   const handleFileChange = (e) => {
